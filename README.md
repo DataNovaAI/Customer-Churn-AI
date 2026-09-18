@@ -2,17 +2,9 @@
 
 ## Customer Retention & Churn Risk Analytics
 
-Customer Churn AI is a machine learning and business analytics project that identifies customers at risk of leaving a business and provides actionable retention insights.
+Customer Churn AI is a machine learning and business analytics project that predicts customer churn, identifies high-risk customers, and provides actionable retention insights.
 
-The project transforms customer data into:
-
-* Customer churn analysis
-* Churn prediction
-* Customer risk classification
-* High-risk customer identification
-* Customer value-at-risk analysis
-* Business retention recommendations
-* Interactive Streamlit dashboard
+The project combines customer analytics, machine learning, risk scoring, and an interactive Streamlit dashboard.
 
 ---
 
@@ -24,19 +16,23 @@ The project transforms customer data into:
 
 ## Business Problem
 
-Customer churn can significantly affect business revenue and long-term customer relationships.
+Customer churn can significantly impact business revenue.
 
-Businesses need to identify customers who are likely to leave before they become inactive.
+Businesses need to identify customers who are likely to leave so they can take proactive retention actions.
 
-This project uses customer behavior data and machine learning to identify high-risk customers and help businesses prioritize retention activities.
+Customer Churn AI addresses this problem by:
+
+* Predicting customer churn probability
+* Identifying high-risk customers
+* Highlighting valuable customers at risk
+* Analyzing customer behavior
+* Providing business-oriented retention insights
 
 ---
 
 ## Key Features
 
 ### Customer Analytics
-
-The project analyzes:
 
 * Customer demographics
 * Customer tenure
@@ -50,61 +46,82 @@ The project analyzes:
 
 ### Churn Analysis
 
-The project calculates:
-
-* Total customers
-* Active customers
-* Churned customers
-* Overall churn rate
-* Customer behavior differences between active and churned customers
+* Churn rate
+* Active vs. churned customers
+* Customer behavior comparison
+* High-risk customer identification
 
 ### Machine Learning
 
-A Random Forest Classifier is used to predict customer churn.
+* Random Forest classification
+* Train/test split
+* Feature scaling
+* Churn probability prediction
+* Classification report
+* Customer risk classification
 
-The model generates:
+### Risk Segmentation
 
-* Churn prediction
-* Churn probability
-* Customer risk level
-
-Risk levels are classified as:
+Customers are classified into:
 
 * High Risk
 * Medium Risk
 * Low Risk
 
-### High-Risk Customer Identification
+### Business Intelligence
 
-The project identifies customers with high predicted churn probability and prioritizes them for potential retention campaigns.
-
-### Business Insights
-
-The system highlights:
+The project identifies:
 
 * High-value customers at risk
-* Customers who have not purchased recently
-* Customers with frequent support interactions
 * Historical customer value associated with high-risk customers
+* Customers with long periods since their last purchase
+* Customers with frequent support interactions
+* Potential retention priorities
 
 ---
 
 ## Machine Learning Results
 
-The Random Forest model was evaluated on a held-out test set.
+The Random Forest model achieved:
 
-**Accuracy:** 83.0%
+* **Accuracy:** 83.0%
 
 ### Classification Report
 
-| Class   | Precision | Recall | F1-Score |
-| ------- | --------: | -----: | -------: |
-| Active  |      0.84 |   0.92 |     0.88 |
-| Churned |      0.81 |   0.64 |     0.72 |
+| Customer Status | Precision | Recall | F1-Score |
+| --------------- | --------: | -----: | -------: |
+| Active          |      0.84 |   0.92 |     0.88 |
+| Churned         |      0.81 |   0.64 |     0.72 |
 
-The model achieved a 64% recall for the churn class, meaning it identified approximately 64% of the actual churned customers in the test set.
+The churn recall of **64%** means the model identified approximately 64% of the actual churned customers in the test set.
 
-For a real business deployment, additional model evaluation and threshold optimization would be recommended based on the cost of missed churn versus unnecessary retention actions.
+For a churn prediction system, recall for the churn class is an important metric because missing a customer who is likely to leave can reduce the opportunity for retention action.
+
+---
+
+## Business Insights Example
+
+Using the sample dataset:
+
+* **1,000 customers**
+* **337 churned customers**
+* **33.7% churn rate**
+* **279 customers classified as high risk**
+* Approximately **$3.52M historical total spending** associated with high-risk customers
+
+> Note: The $3.52M figure represents the historical total spending of customers classified as high risk. It should not be interpreted as guaranteed future revenue loss.
+
+High-risk customers showed longer periods since their last purchase, making recency an important factor in the churn analysis.
+
+---
+
+## Recommended Business Actions
+
+1. Contact high-value customers with high churn probability.
+2. Create personalized retention campaigns.
+3. Follow up with customers who have not purchased recently.
+4. Investigate customers with frequent support interactions.
+5. Prioritize high-value customers for retention efforts.
 
 ---
 
@@ -115,17 +132,13 @@ Customer Data
       ↓
 Data Analysis
       ↓
-Churn Analysis
-      ↓
 Feature Preparation
       ↓
-Train/Test Split
-      ↓
-Random Forest Model
+Machine Learning Model
       ↓
 Churn Probability
       ↓
-Customer Risk Classification
+Risk Classification
       ↓
 High-Risk Customer Analysis
       ↓
@@ -133,33 +146,6 @@ Business Insights
       ↓
 Streamlit Dashboard
 ```
-
----
-
-## Business Insights Example
-
-In the current synthetic dataset:
-
-* 1,000 customers were analyzed.
-* 337 customers were classified as churned.
-* The overall churn rate was 33.7%.
-* 279 customers were classified as high churn risk.
-* High-risk customers had approximately $3.52M in historical total spending.
-
-**Important:** The $3.52M figure represents the historical total spending of customers classified as high risk. It should not be interpreted as guaranteed future revenue loss.
-
----
-
-## Recommended Business Actions
-
-The analysis can support actions such as:
-
-1. Prioritize high-value customers with high churn probability.
-2. Contact customers who have not purchased recently.
-3. Investigate customers with frequent support interactions.
-4. Design personalized retention offers.
-5. Monitor churn probability over time.
-6. Develop targeted retention campaigns for different customer segments.
 
 ---
 
@@ -176,6 +162,7 @@ Customer Churn AI
 │   └── scaler.pkl
 │
 ├── outputs
+│   ├── churn_dashboard.png
 │   ├── churn_distribution.png
 │   ├── last_purchase_by_churn.png
 │   ├── support_calls_by_churn.png
@@ -202,9 +189,9 @@ Customer Churn AI
 * Python
 * Pandas
 * NumPy
-* Matplotlib
 * Scikit-learn
 * Joblib
+* Matplotlib
 * Streamlit
 
 ---
@@ -215,63 +202,30 @@ Customer Churn AI
 
 ```bash
 git clone https://github.com/DataNovaAI/Customer-Churn-AI.git
-```
-
-### 2. Open the project
-
-```bash
 cd Customer-Churn-AI
 ```
 
-### 3. Install dependencies
+### 2. Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+### 3. Activate the virtual environment
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Create the dataset
-
-```bash
-python create_data.py
-```
-
-### 5. Analyze the data
-
-```bash
-python churn_analysis.py
-```
-
-### 6. Create charts
-
-```bash
-python churn_charts.py
-```
-
-### 7. Train the machine learning model
-
-```bash
-python train_model.py
-```
-
-### 8. Generate churn predictions
-
-```bash
-python predict_churn.py
-```
-
-### 9. Identify high-risk customers
-
-```bash
-python high_risk_customers.py
-```
-
-### 10. Generate business insights
-
-```bash
-python business_insights.py
-```
-
-### 11. Launch the dashboard
+### 5. Run the Streamlit dashboard
 
 ```bash
 streamlit run app/dashboard.py
@@ -281,37 +235,20 @@ streamlit run app/dashboard.py
 
 ## Dataset
 
-This project currently uses a **synthetic customer dataset** created for demonstration and portfolio purposes.
+The project currently uses a **synthetic customer dataset** containing 1,000 customers.
 
-The dataset contains customer-level behavioral and spending information.
+The dataset includes customer behavior and transaction-related features such as:
 
-It is not intended to represent any specific real company's customers.
+* Age
+* Gender
+* Tenure
+* Monthly spending
+* Total spending
+* Number of orders
+* Average order value
+* Support calls
+* Days since last purchase
+* Discount usage
+* Churn status
 
----
-
-## Limitations
-
-This project is designed as a demonstration of an end-to-end customer churn analytics workflow.
-
-For production use, the model should be retrained and validated using real customer data.
-
-Additional production considerations could include:
-
-* Cross-validation
-* Hyperparameter optimization
-* Model calibration
-* Feature engineering
-* Threshold optimization
-* Explainable AI
-* Model monitoring
-* Data drift detection
-* Real-time prediction
-* Integration with CRM systems
-
----
-
-## Project Goal
-
-The goal of Customer Churn AI is to demonstrate how machine learning can transform customer behavior data into practical business intelligence and retention insights.
-
-**Raw Data → Analysis → Machine Learning → Prediction → Business Insight → Dashboard**
+T
